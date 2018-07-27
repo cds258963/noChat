@@ -78,6 +78,7 @@
 					for(var i = 0; i < subpages.length; i++) {
 						var temp = {};
 						var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+						plus.webview.getWebviewById(subpages[i]).reload();
 						if(i > 0) {
 							sub.hide(); 
 						}
@@ -93,6 +94,7 @@
 						return;
 					}
 					//显示目标选项卡
+					
 					plus.webview.show(targetTab);
 					//隐藏当前;
 					plus.webview.hide(activeTab);

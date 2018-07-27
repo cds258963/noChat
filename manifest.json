@@ -164,6 +164,20 @@
 					"pages/friends.html"
 				],
 				"priority": 0
+			},
+			"pages/talking.html": {
+				"resources": [
+					"pages/talking/talking_sub.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"pages/friends.html": {
+				"resources": [
+					"pages/friends/friends_sub.html"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
