@@ -204,18 +204,20 @@
 							},
 							success: function(data) {
 								//服务器返回响应，根据响应结果，分析是否登录成功；
-								console.log(JSON.stringify(data));
 								if(data.status == 0) {
-									console.log(autoLoginButton.classList.contains("mui-active"));
 									if(autoLoginButton.classList.contains("mui-active")) {
 										localStorage.setItem('noChatId', data.msg._id);
-									}else{
+
+									} else {
 										localStorage.removeItem('noChatId');
+
 									}
+									localStorage.setItem('userInfo', JSON.stringify(data.msg));
+
 									var exp = new Date();
 									var time = 15 * 24 * 60 * 60 * 1000;
 									exp.setTime(exp.getTime() + time);
-									plus.navigator.setCookie(localStorage.getItem("ip"), localStorage.getItem("noChatId") + "; expires = " + exp + "; path = /");
+									plus.navigator.setCookie(localStorage.getItem("ip"), data.msg._id + "; expires = " + exp + "; path = /");
 									toMain();
 								} else {
 									mui.toast('账号密码不正确!');

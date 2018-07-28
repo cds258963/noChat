@@ -178,6 +178,13 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"pages/me.html": {
+				"resources": [],
+				"refer": [
+					"pages/me/account.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {

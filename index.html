@@ -11,7 +11,7 @@
 			mui.init();
 			mui.plusReady(function() {
 				var noChatId = localStorage.getItem('noChatId');
-				var ip = localStorage.setItem('ip', 'http://192.168.11.146:3333');
+				var ip = localStorage.setItem('ip', 'http://192.168.0.127:3333');
 				if(noChatId) {
 					mui.ajax(localStorage.getItem("ip") + '/getUser', {
 						data: {
@@ -29,6 +29,7 @@
 								var time = 15 * 24 * 60 * 60 * 1000;
 								exp.setTime(exp.getTime() + time);
 								plus.navigator.setCookie(localStorage.getItem("ip"), localStorage.getItem("noChatId") + "; expires = " + exp + "; path = /");
+								localStorage.setItem('userInfo', JSON.stringify(data.msg));
 								mui.openWindow({
 									url: 'main.html',
 									extras: {
