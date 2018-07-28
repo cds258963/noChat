@@ -1,0 +1,295 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-table-view:first-child {
+				margin-top: 15px;
+			}
+			
+			.mui-table-view:last-child {
+				margin-bottom: 30px;
+			}
+			
+			.mui-table-view {
+				margin-top: 20px;
+			}
+			
+			.head {
+				height: 40px;
+			}
+			
+			#head {
+				line-height: 40px;
+			}
+			
+			.head-img {
+				width: 40px;
+				height: 40px;
+			}
+			
+			#head-img1 {
+				position: absolute;
+				bottom: 10px;
+				right: 40px;
+				width: 40px;
+				height: 40px;
+			}
+			
+			.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">账号与安全</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a id="head" class="mui-navigate-right">头像
+						<span class="mui-pull-right head">
+							<img class="head-img mui-action-preview" id="head-img1" src=""/>
+						</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>姓名<span class="mui-pull-right">Hbuilder</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>HBuilder账号<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a>QQ号<span class="mui-pull-right">88888888</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>手机号<span class="mui-pull-right">18601234567</span></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>邮箱地址<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+				</li>
+			</ul>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			//初始化头像
+			getHeadImg();
+
+			function getHeadImg() {
+				var headUrl = localStorage.getItem('ip') + JSON.parse(localStorage.getItem('userInfo')).headImgUrl.replace('public', '');
+				document.getElementById('head-img1').src = headUrl;
+			}
+
+			//更换头像
+			mui(".mui-table-view-cell").on("tap", "#head", function(e) {
+				if(mui.os.plus) {
+					var a = [{
+						title: "拍照"
+					}, {
+						title: "从手机相册选择"
+					}];
+					plus.nativeUI.actionSheet({
+						title: "修改头像",
+						cancel: "取消",
+						buttons: a
+					}, function(b) {
+						switch(b.index) {
+							case 0:
+								break;
+							case 1:
+								getImage();
+								break;
+							case 2:
+								galleryImg();
+								break;
+							default:
+								break
+						}
+					})
+				}
+
+			});
+
+			function getImage() {
+
+				var c = plus.camera.getCamera();
+				c.captureImage(function(e) {
+					plus.io.resolveLocalFileSystemURL(e, function(entry) {
+						plus.nativeUI.showWaiting("上传中...");
+
+						var s = entry.toLocalURL();
+						console.log(s);
+						var url = localStorage.getItem('ip') + '/upHeaderImg';
+						console.log(url)
+						zoomImage(s);
+						//缩放图片
+
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(s) {
+					console.log("error" + s);
+				}, {
+					filename: "_doc/head.jpg"
+				})
+			}
+
+			function galleryImg() {
+				plus.nativeUI.showWaiting("上传中...");
+				plus.gallery.pick(function(a) {
+					plus.io.resolveLocalFileSystemURL(a, function(entry) {
+						plus.io.resolveLocalFileSystemURL("_doc/", function(root) {
+							root.getFile("head.jpg", {}, function(file) {
+								//文件已存在
+								file.remove(function() {
+									console.log("file remove success");
+									entry.copyTo(root, 'head.jpg', function(e) {
+											console.log(e.fullPath)
+											var e = e.fullPath + "?version=" + new Date().getTime();
+											zoomImage(e.fullPath);
+
+										},
+										function(e) {
+											console.log('copy image fail:' + e.message);
+										});
+								}, function() {
+									console.log("delete image fail:" + e.message);
+								});
+							}, function() {
+								//文件不存在
+								entry.copyTo(root, 'head.jpg', function(e) {
+										var path = e.fullPath + "?version=" + new Date().getTime();
+										zoomImage(e.fullPath);
+									},
+									function(e) {
+										console.log('copy image fail:' + e.message);
+									});
+							});
+						}, function(e) {
+							console.log("get _www folder fail");
+						})
+					}, function(e) {
+						console.log("读取拍照文件错误：" + e.message);
+					});
+				}, function(a) {}, {
+					filter: "image"
+				})
+			};
+			//压缩图片完成后上传
+			function zoomImage(path) {
+				plus.zip.compressImage({
+						src: path,
+						dst: path,
+						width: "40%", // 缩小到原来的一半
+						overwrite: true
+					},
+					function(event) {
+						var target = event.target; // 压缩转换后的图片url路径，以"file://"开头
+						var size = event.size; // 压缩转换后图片的大小，单位为字节（Byte）
+						var width = event.width; // 压缩转换后图片的实际宽度，单位为px
+						var height = event.height; // 压缩转换后图片的实际高度，单位为px
+
+						upload(target);
+					},
+					function(error) {});
+			}
+			//上传图片
+			function upload(imgUrl) {
+				var headImgUploader = plus.uploader.createUpload(localStorage.getItem('ip') + '/upHeaderImg', {
+					method: 'POST'
+				}, function(upload, status) {
+					plus.nativeUI.closeWaiting()
+					console.log("upload cb:" + upload.responseText);
+					if(status == 200) {
+						var data = JSON.parse(upload.responseText);
+						//上传成功，重置表单
+						if(data.status === 0) {
+							mui.toast('上传成功~')
+
+							var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+							userInfo.headImgUrl = data.imgUrl;
+							localStorage.setItem('userInfo', JSON.stringify(userInfo));
+							getHeadImg();
+							var page = plus.webview.getWebviewById('./pages/me.html')
+							mui.fire(page, 'getHeadImg');
+							//变更大图预览的src
+							//目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现
+							document.querySelector("#__mui-imageview__group .mui-slider-item img").src = localStorage.getItem('ip') + data.imgUrl.replace('public', '') + "?version=" + new Date().getTime();
+						}
+					} else {
+						console.log("upload fail");
+					}
+
+				});
+
+				headImgUploader.addFile(imgUrl, {
+					key: 'headerImg'
+				});
+				//开始上传任务
+				headImgUploader.start();
+
+			}
+
+			setTimeout(function() {
+				initImgPreview();
+			}, 300)
+			document.getElementById("head-img1").addEventListener('tap', function(e) {
+				e.stopPropagation();
+			});
+			//大图预览
+			function initImgPreview() {
+				var imgs = document.querySelectorAll("img.mui-action-preview");
+				imgs = mui.slice.call(imgs);
+				if(imgs && imgs.length > 0) {
+					var slider = document.createElement("div");
+					slider.setAttribute("id", "__mui-imageview__");
+					slider.classList.add("mui-slider");
+					slider.classList.add("mui-fullscreen");
+					slider.style.display = "none";
+					slider.addEventListener("tap", function() {
+						slider.style.display = "none";
+					});
+					slider.addEventListener("touchmove", function(event) {
+						event.preventDefault();
+					})
+					var slider_group = document.createElement("div");
+					slider_group.setAttribute("id", "__mui-imageview__group");
+					slider_group.classList.add("mui-slider-group");
+					imgs.forEach(function(value, index, array) {
+						//给图片添加点击事件，触发预览显示；
+						value.addEventListener('tap', function() {
+							slider.style.display = "block";
+							_slider.refresh();
+							_slider.gotoItem(index, 0);
+						})
+						var item = document.createElement("div");
+						item.classList.add("mui-slider-item");
+						var a = document.createElement("a");
+						var img = document.createElement("img");
+						img.setAttribute("src", value.src);
+						a.appendChild(img)
+						item.appendChild(a);
+						slider_group.appendChild(item);
+					});
+					slider.appendChild(slider_group);
+					document.body.appendChild(slider);
+					var _slider = mui(slider).slider();
+				}
+			}
+		</script>
+	</body>
+
+</html>
