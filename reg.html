@@ -97,6 +97,8 @@
 								plus.nativeUI.toast(err);
 								return;
 							}
+							plus.nativeUI.showWaiting("注册中...");
+
 							mui.ajax(localStorage.getItem("ip") + '/reg', {
 								data: {
 									account: accountBox.value,
@@ -110,6 +112,8 @@
 									'Content-Type': 'application/json'
 								},
 								success: function(data) {
+									plus.nativeUI.closeWaiting();
+
 									//服务器返回响应，根据响应结果，分析是否登录成功；
 									plus.nativeUI.toast(data.msg);
 									if(data.status == 0) {

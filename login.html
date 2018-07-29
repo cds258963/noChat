@@ -191,6 +191,8 @@
 					});
 					//登录方法
 					function loginFunc() {
+						plus.nativeUI.showWaiting("登录中...");
+
 						mui.ajax(localStorage.getItem("ip") + '/login', {
 							data: {
 								account: accountBox.value,
@@ -203,6 +205,7 @@
 								'Content-Type': 'application/json'
 							},
 							success: function(data) {
+								plus.nativeUI.closeWaiting()
 								//服务器返回响应，根据响应结果，分析是否登录成功；
 								if(data.status == 0) {
 									if(autoLoginButton.classList.contains("mui-active")) {

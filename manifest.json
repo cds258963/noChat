@@ -182,7 +182,8 @@
 			"pages/me.html": {
 				"resources": [],
 				"refer": [
-					"pages/me/account.html"
+					"pages/me/account.html",
+					"login.html"
 				],
 				"priority": 0
 			}

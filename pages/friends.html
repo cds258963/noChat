@@ -18,17 +18,81 @@
 				-webkit-box-shadow: none;
 				box-shadow: none;
 			}
+			
+			.mui-plus .plus {
+				display: inline;
+			}
+			
+			.plus {
+				display: none;
+			}
+			
+			#topPopover {
+				position: fixed;
+				top: 16px;
+				right: 6px;
+			}
+			
+			#topPopover .mui-popover-arrow {
+				left: auto;
+				right: 6px;
+			}
+			
+			p {
+				text-indent: 22px;
+			}
+			
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			
+			.mui-popover {
+				height: 100px;
+				width: 150px;
+			}
+			.mui-table-view .mui-media-object {
+				line-height: 20px;
+				max-width: 20px;
+				height: 20px;
+			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
-			<h1 class="mui-title">22222222</h1>
+			<h1 class="mui-title">好友</h1>
+			<a class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover" id="menu"></a>
 		</header>
-		<div class="mui-content" >
+		<!--右上角弹出菜单-->
+		<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<a href="#" id="barcode">
+							<img class="mui-media-object mui-pull-left" src="../images/friendsIcon.png">
+								<div>扫一扫</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a href="#">
+							<img class="mui-media-object mui-pull-left" src="../images/friendsIcon.png">
+								<div>查找</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<div class="mui-content">
 			<div id='list' class="mui-indexed-list">
 				<div class="mui-indexed-list-search mui-input-row mui-search">
-					<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索机场">
+					<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索好友">
 				</div>
 				<div class="mui-indexed-list-bar">
 					<a>A</a>
@@ -254,12 +318,50 @@
 			mui.init();
 
 			mui.ready(function() {
-				var header = document.querySelector('header.mui-bar'); 
+				var header = document.querySelector('header.mui-bar');
 				var list = document.getElementById('list');
 				//calc hieght
 				list.style.height = (document.body.offsetHeight - header.offsetHeight) + 'px';
 				//create
 				window.indexedList = new mui.IndexedList(list);
+				var noChatId = localStorage.getItem('noChatId');
+
+				//初始化弹出菜单
+
+				mui('.mui-scroll-wrapper').scroll();
+				mui('body').on('shown', '.mui-popover', function(e) {
+					//console.log('shown', e.detail.id);//detail为当前popover元素
+				});
+				mui('body').on('hidden', '.mui-popover', function(e) {
+					//console.log('hidden', e.detail.id);//detail为当前popover元素
+				});
+
+				mui.ajax(localStorage.getItem("ip") + '/getFriends', {
+					data: {
+						userId: noChatId
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					success: function(data) {
+						console.log(data);
+
+					},
+					error: function(xhr, type, errorThrown) {
+
+					}
+				})
+				
+				//打开扫一扫页面
+				document.getElementById('barcode').addEventListener('tap',function(){
+					mui.openWindow({
+						url:'./commonsPage/barCode.html',
+						id:'barCode.html'
+					})
+				})
 			});
 		</script>
 	</body>

@@ -63,16 +63,16 @@
 						</span>
 					</a>
 				</li>
-				<li class="mui-table-view-cell">
-					<a>姓名<span class="mui-pull-right">Hbuilder</span></a>
+				<li class="mui-table-view-cell" id="userNameLi">
+					<a>姓名<span class="mui-pull-right" id="userName">Hbuilder</span></a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a>HBuilder账号<span class="mui-pull-right">hbuilder@dcloud.io</span></a>
+					<a>账号<span class="mui-pull-right" id="account">hbuilder@dcloud.io</span></a>
 				</li>
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a>QQ号<span class="mui-pull-right">88888888</span></a>
+					<a class="mui-navigate-right">二维码<span class="mui-pull-right"></span></a>
 				</li>
 				<li class="mui-table-view-cell">
 					<a>手机号<span class="mui-pull-right">18601234567</span></a>
@@ -89,8 +89,15 @@
 			getHeadImg();
 
 			function getHeadImg() {
-				var headUrl = localStorage.getItem('ip') + JSON.parse(localStorage.getItem('userInfo')).headImgUrl.replace('public', '');
-				document.getElementById('head-img1').src = headUrl;
+				if(JSON.parse(localStorage.getItem('userInfo')).headImgUrl) {
+					var headUrl = localStorage.getItem('ip') + JSON.parse(localStorage.getItem('userInfo')).headImgUrl.replace('public', '');
+					document.getElementById('head-img1').src = headUrl;
+				}
+
+				var userName = JSON.parse(localStorage.getItem('userInfo')).name;
+				document.getElementById('userName').innerText = userName;
+				var account = JSON.parse(localStorage.getItem('userInfo')).account;
+				document.getElementById('account').innerText = account;
 			}
 
 			//更换头像
@@ -289,6 +296,42 @@
 					var _slider = mui(slider).slider();
 				}
 			}
+			//更改昵称
+			document.getElementById("userNameLi").addEventListener('tap', function(e) {
+				e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+				var btnArray = ['取消', '确定'];
+				mui.prompt(' ', '请输入昵称', ' ', btnArray, function(e) {
+
+					if(e.index == 1) {
+						plus.nativeUI.showWaiting("修改中...");
+
+						mui.ajax(localStorage.getItem("ip") + '/updateUSerName', {
+							data: {
+								name: e.value
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							success: function(data) {
+								plus.nativeUI.closeWaiting()
+								if(data.status == 0) {
+									var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+									userInfo.name = e.value;
+									localStorage.setItem('userInfo', JSON.stringify(userInfo));
+									getHeadImg();
+									var page = plus.webview.getWebviewById('./pages/me.html')
+									mui.fire(page, 'getHeadImg');
+									mui.toast('修改成功')
+								} else {
+									mui.toast('修改失败，请重试！')
+								}
+							}
+						})
+					} else {
+						info.innerText = '你点了取消按钮';
+					}
+				})
+			});
 		</script>
 	</body>
 

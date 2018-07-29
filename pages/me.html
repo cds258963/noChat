@@ -25,8 +25,8 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a id="back" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 id="title" class="mui-title">最近联系</h1>
+			<a class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover" id="menu"></a>
 		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view mui-table-view-chevron">
@@ -34,8 +34,14 @@
 					<a class="mui-navigate-right" href="javascript:;" id="accountPage">
 						<img class="mui-media-object mui-pull-left head-img" id="head-img" src="">
 						<div class="mui-media-body">
-							Hello MUI
-							<p class='mui-ellipsis'>账号:hellomui</p>
+							<span id="userName">
+								
+							</span>
+							<p class='mui-ellipsis'>账号:
+								<span id="account">
+								
+								</span>
+							</p>
 						</div>
 					</a>
 				</li>
@@ -78,10 +84,18 @@
 				getHeadImg();
 
 				function getHeadImg() {
-					var headUrl = localStorage.getItem('ip') + JSON.parse(localStorage.getItem('userInfo')).headImgUrl.replace('public', '');
-					doc.getElementById('head-img').src = headUrl;
+					if(JSON.parse(localStorage.getItem('userInfo')).headImgUrl) {
+						var headUrl = localStorage.getItem('ip') + JSON.parse(localStorage.getItem('userInfo')).headImgUrl.replace('public', '');
+						doc.getElementById('head-img').src = headUrl;
+
+					}
+					var userName = JSON.parse(localStorage.getItem('userInfo')).name;
+					doc.getElementById('userName').innerText = userName;
+					var account = JSON.parse(localStorage.getItem('userInfo')).account;
+					doc.getElementById('account').innerText = account;
+
 				}
-				window.addEventListener('getHeadImg',function(){
+				window.addEventListener('getHeadImg', function() {
 					getHeadImg();
 				})
 				doc.getElementById('accountPage').addEventListener('tap', function() {
@@ -109,16 +123,18 @@
 					})
 				})
 				doc.getElementById('layout').addEventListener('tap', function() {
-					console.log(plus.navigator.getCookie(localStorage.getItem("ip")))
-					mui.ajax(localStorage.getItem("ip") + '/testCookie', {
-						data: {},
-						dataType: 'json', //服务器返回json格式数据
-						type: 'get', //HTTP请求类型
-						timeout: 10000, //超时时间设置为10秒；
-						success: function(data) {
-							console.log(data);
-						}
-					})
+					//					console.log(plus.navigator.getCookie(localStorage.getItem("ip")))
+					// mui.ajax(localStorage.getItem("ip") + '/layout', {
+					// 	data: {},
+					// 	dataType: 'json', //服务器返回json格式数据
+					// 	type: 'get', //HTTP请求类型
+					// 	timeout: 10000, //超时时间设置为10秒；
+					// 	success: function(data) {
+					// 		console.log(data);
+					// 	}
+					// })					 
+					localStorage.removeItem('noChatId');
+					plus.runtime.restart();
 				})
 			})
 
