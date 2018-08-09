@@ -6,10 +6,8 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="HandheldFriendly" content="true" />
 		<meta name="MobileOptimized" content="320" />
-		<title>Hello H5+</title>
-		
-		<link rel="stylesheet" href="../../css/mui.min.css" type="text/css" charset="utf-8" />
-		<link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../css/mui.min.css" />
+		<title>扫一扫</title>
 		<style type="text/css">
 			#bcid {
 				width: 100%;
@@ -55,25 +53,15 @@
 			<p class="tip">...载入中...</p>
 		</div>
 		<footer>
-			<div class="fbt" onclick="back()">取　 消</div>
-			<div class="fbt" onclick="scanPicture()">从相册选择二维码</div>
+			<div class="fbt" id="closeBtn">取　 消</div>
+			<div class="fbt" id="choicePic">从相册选择二维码</div>
 		</footer>
-		<script type="text/javascript" src="../../js/mui.min.js"></script>
-		<script type="text/javascript" src="../../js/common.js"></script>
+		<script src="../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			mui.init();
-			var ws = null,
-				wo = null;
-			var scan = null,
-				domready = false;
-			// H5 plus事件处理
-			function plusReady() {
-				if(ws || !window.plus || !domready) {
-					return;
-				}
+			mui.plusReady(function() {
 				// 获取窗口对象
 				ws = plus.webview.currentWebview();
-				wo = ws.opener();
 				// 开始扫描
 				ws.addEventListener('show', function() {
 					scan = new plus.barcode.Barcode('bcid');
@@ -83,20 +71,8 @@
 						filename: '_doc/barcode/'
 					});
 				}, false);
-				// 显示页面并关闭等待框
-				ws.show('pop-in');
-				wo.evalJS('closeWaiting()');
-			}
-			if(window.plus) {
-				plusReady();
-			} else {
-				document.addEventListener('plusready', plusReady, false);
-			}
-			// 监听DOMContentLoaded事件
-			document.addEventListener('DOMContentLoaded', function() {
-				domready = true;
-				plusReady();
-			}, false);
+			})
+
 			// 二维码扫描成功
 			function onmarked(type, result, file) {
 				switch(type) {
@@ -114,11 +90,45 @@
 						break;
 				}
 				result = result.replace(/\n/g, '');
-				wo.evalJS("scaned('" + type + "','" + result + "','" + file + "');");
-				back();
+				result = result.replace(/"/g, '');
+				console.log(result);
+				var bts = [{
+					title: "确认添加"
+				}];
+				plus.nativeUI.actionSheet({
+						title: "ActionSheet标题",
+						cancel: "取消",
+						buttons: bts
+					},
+					function(e) {
+						mui.ajax(localStorage.getItem("ip")+'/addfriend',{
+							data:{
+								friendId:result
+							},
+							dataType:'json',//服务器返回json格式数据
+							type:'post',//HTTP请求类型
+							timeout:10000,//超时时间设置为10秒；
+							success:function(data){
+								console.log(data);
+								
+							},
+							error:function(xhr,type,errorThrown){
+								console.log(xhr);
+								console.log(type);
+								console.log(errorThrown);
+							}
+						});
+					}
+				);
+
+				//				ws.close();
 			}
-			// 从相册中选择二维码图片 
-			function scanPicture() {
+			//取消按钮
+			document.getElementById('closeBtn').addEventListener('tap', function() {
+				ws.close();
+			})
+			//从相册中选择二维码
+			document.getElementById('choicePic').addEventListener('tap', function() {
 				plus.gallery.pick(function(path) {
 					plus.barcode.scan(path, onmarked, function(error) {
 						plus.nativeUI.alert('无法识别此图片');
@@ -126,7 +136,7 @@
 				}, function(err) {
 					console.log('Failed: ' + err.message);
 				});
-			}
+			})
 		</script>
 	</body>
 

@@ -19,7 +19,7 @@
 							<a class="mui-btn mui-btn-red">删除</a>
 						</div>
 						<div class="mui-slider-handle">
-							<a href="javascript:;">
+							<a href="javascript:;" class="talkingItem">
 								<img class="mui-media-object mui-pull-left" src="../../images/qq.png">
 								<div class="mui-media-body">
 									幸福
@@ -131,6 +131,13 @@
 					});
 					var btnArray = ['确认', '取消'];
 
+				})
+				//点击进入聊天界面
+				$('#OA_task_1').on('tap', '.talkingItem', function(event) {
+					mui.openWindow({
+						url:'./chat.html',
+						id:'chat.html'
+					})
 				})
 			}(mui, document));
 		</script>

@@ -72,7 +72,7 @@
 			</ul>
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">二维码<span class="mui-pull-right"></span></a>
+					<a class="mui-navigate-right" id="codePic">二维码<span class="mui-pull-right"></span></a>
 				</li>
 				<li class="mui-table-view-cell">
 					<a>手机号<span class="mui-pull-right">18601234567</span></a>
@@ -332,6 +332,13 @@
 					}
 				})
 			});
+			//打开二维码页面
+			document.getElementById('codePic').addEventListener('tap',function(){
+				mui.openWindow({
+					url:'./code.html',
+					id:'code.html'
+				})
+			})
 		</script>
 	</body>
 
