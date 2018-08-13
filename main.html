@@ -12,6 +12,7 @@
 				font-size: 14px;
 				color: #8f8f94;
 			}
+			
 			.mui-btn {
 				padding: 10px;
 			}
@@ -19,7 +20,7 @@
 	</head>
 
 	<body>
-		
+
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item mui-active" href="./pages/talking.html">
 				<span class="mui-icon">&#xe658;</span>
@@ -39,9 +40,43 @@
 			</a>
 		</nav>
 		<script src="js/mui.min.js"></script>
+		<script src="js/chat/socket.io.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/app.js"></script>
 		<script>
 			(function($, doc) {
+
+				//链接socket服务器
+				var socket = io.connect(localStorage.getItem('ip').replace('3333', '8080'));
+				//注册链接
+				socket.emit('chat-reg', {
+					account: JSON.parse(localStorage.getItem('userInfo')).account
+				});
+				socket.on('chat-reg', function(data) {
+					console.log("注册成功");
+					//				console.log(JSON.stringify(data));
+				});
+				socket.on('connect', function() {
+					console.log("链接成功");
+
+				});
+
+				socket.on('connect_failed', function() {
+					console.log("链接失败");
+				});
+
+				socket.on('reconnect', function() {
+					console.log("重新连接到服务器");
+				});
+
+				//自定义事件方便调用
+				window.addEventListener('emit', function(event) {
+					//发送消息
+					console.log(JSON.stringify(event.detail.data));
+					var path = event.detail.path
+					var data = event.detail.data;
+					socket.emit(path, data);
+				})
+
 				$.init();
 				var settings = app.getSettings();
 				//
@@ -50,6 +85,17 @@
 				}, false);
 				$.plusReady(function() {
 					//--
+					
+					//获取chat页面
+
+					socket.on('/getMsg', function(data) {
+						console.log('收到消息：' + JSON.stringify(data));
+						var chat = plus.webview.getWebviewById("chat.html");
+						mui.fire(chat, 'onSocket', {
+							msg: data.msg
+						})
+					});
+					
 					$.oldBack = mui.back;
 					var backButtonPress = 0;
 					$.back = function(event) {
@@ -64,7 +110,7 @@
 						}, 1000);
 						return false;
 					};
-					
+
 				});
 				//底部控件
 				var subpages = ['./pages/talking.html', './pages/friends.html', './pages/faxian.html', './pages/me.html'];
@@ -78,15 +124,16 @@
 					for(var i = 0; i < subpages.length; i++) {
 						var temp = {};
 						var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
-						
+
 						if(i > 0) {
-							sub.hide(); 
+							sub.hide();
 						}
 						self.append(sub);
 					}
 				});
 				//当前激活选项
 				var activeTab = subpages[0];
+				var n = 0;
 				//选项卡点击事件
 				mui('.mui-bar-tab').on('tap', 'a', function(e) {
 					var targetTab = this.getAttribute('href');
@@ -94,12 +141,18 @@
 						return;
 					}
 					//显示目标选项卡
-					plus.webview.getWebviewById(targetTab).reload();
+					//					plus.webview.getWebviewById(targetTab).reload();
 					plus.webview.show(targetTab);
+
 					//隐藏当前;
 					plus.webview.hide(activeTab);
 					//更改当前活跃的选项卡
 					activeTab = targetTab;
+					if(targetTab == './pages/friends.html' && n == 0) {
+						n++;
+						plus.webview.getWebviewById(targetTab).reload();
+					}
+
 				});
 				//自定义事件，模拟点击“首页选项卡”
 				document.addEventListener('gohome', function() {

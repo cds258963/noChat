@@ -18,6 +18,7 @@
 				-webkit-touch-callout: none;
 				-webkit-user-select: none;
 			}
+			
 			footer {
 				position: fixed;
 				width: 100%;
@@ -30,6 +31,7 @@
 				padding: 0px 50px;
 				background-color: #fafafa;
 			}
+			
 			.footer-left {
 				position: absolute;
 				width: 50px;
@@ -41,6 +43,7 @@
 				line-height: 100%;
 				padding: 12px 4px;
 			}
+			
 			.footer-right {
 				position: absolute;
 				width: 50px;
@@ -53,15 +56,18 @@
 				padding: 12px 5px;
 				display: inline-block;
 			}
+			
 			.footer-center {
 				height: 100%;
 				padding: 5px 0px;
 			}
+			
 			.footer-center [class*=input] {
 				width: 100%;
 				height: 100%;
 				border-radius: 5px;
 			}
+			
 			.footer-center .input-text {
 				background: #fff;
 				border: solid 1px #ddd;
@@ -71,27 +77,33 @@
 				font-family: verdana !important;
 				overflow: hidden;
 			}
+			
 			.footer-center .input-sound {
 				background-color: #eee;
 			}
+			
 			.mui-content {
 				height: 100%;
 				padding: 44px 0px 50px 0px;
 				overflow: auto;
 				background-color: #eaeaea;
 			}
+			
 			#msg-list {
 				height: 100%;
 				overflow: auto;
 				-webkit-overflow-scrolling: touch;
 			}
+			
 			.msg-item {
 				padding: 8px;
 				clear: both;
 			}
+			
 			.msg-item .mui-item-clear {
 				clear: both;
 			}
+			
 			.msg-item .msg-user {
 				width: 38px;
 				height: 38px;
@@ -106,7 +118,7 @@
 				color: #ddd;
 			}
 			
-			.msg-item .msg-user-img{
+			.msg-item .msg-user-img {
 				width: 38px;
 				height: 38px;
 				display: inline-block;
@@ -132,9 +144,11 @@
 				min-width: 35px;
 				float: left;
 			}
+			
 			.msg-item .msg-content .msg-content-inner {
 				overflow-x: hidden;
 			}
+			
 			.msg-item .msg-content .msg-content-arrow {
 				position: absolute;
 				border: solid 1px #d3d3d3;
@@ -148,45 +162,53 @@
 				-webkit-transform: rotateZ(45deg);
 				transform: rotateZ(45deg);
 			}
+			
 			.msg-item-self .msg-user,
 			.msg-item-self .msg-content {
 				float: right;
 			}
+			
 			.msg-item-self .msg-content .msg-content-arrow {
 				left: auto;
 				right: -5px;
 				-webkit-transform: rotateZ(225deg);
 				transform: rotateZ(225deg);
 			}
+			
 			.msg-item-self .msg-content,
 			.msg-item-self .msg-content .msg-content-arrow {
 				background-color: #4CD964;
 				color: #fff;
 				border-color: #2AC845;
 			}
+			
 			footer .mui-icon {
 				color: #000;
 			}
+			
 			footer .mui-icon:active {
 				color: #007AFF !important;
 			}
+			
 			footer .mui-icon-paperplane:before {
 				content: "发送";
 			}
+			
 			footer .mui-icon-paperplane {
 				/*-webkit-transform: rotateZ(45deg);
 				transform: rotateZ(45deg);*/
-				
 				font-size: 16px;
 				word-break: keep-all;
 				line-height: 100%;
 				padding-top: 6px;
 				color: rgba(0, 135, 250, 1);
 			}
+			
 			#msg-sound {
 				-webkit-user-select: none !important;
 				user-select: none !important;
 			}
+			
 			.rprogress {
 				position: absolute;
 				left: 50%;
@@ -204,6 +226,7 @@
 				display: none;
 				-webkit-transition: .15s;
 			}
+			
 			.rschedule {
 				background-color: rgba(0, 0, 0, 0);
 				border: 5px solid rgba(0, 183, 229, 0.9);
@@ -222,7 +245,8 @@
 				-webkit-animation: spin 1s infinite linear;
 				animation: spin 1s infinite linear;
 			}
-			.r-sigh{
+			
+			.r-sigh {
 				display: none;
 				border-radius: 50px;
 				box-shadow: 0 0 15px #2187e7;
@@ -239,15 +263,19 @@
 				font-weight: bold;
 				color: #2187e7;
 			}
-			.rprogress-sigh{
+			
+			.rprogress-sigh {
 				background-image: none !important;
 			}
-			.rprogress-sigh .rschedule{
+			
+			.rprogress-sigh .rschedule {
 				display: none !important;
 			}
-			.rprogress-sigh .r-sigh{
+			
+			.rprogress-sigh .r-sigh {
 				display: block !important;
 			}
+			
 			.rsalert {
 				font-size: 12px;
 				color: #bbb;
@@ -260,6 +288,7 @@
 				left: 0px;
 				bottom: 0px;
 			}
+			
 			@-webkit-keyframes spin {
 				0% {
 					-webkit-transform: rotate(0deg);
@@ -268,6 +297,7 @@
 					-webkit-transform: rotate(360deg);
 				}
 			}
+			
 			@keyframes spin {
 				0% {
 					transform: rotate(0deg);
@@ -276,6 +306,7 @@
 					transform: rotate(360deg);
 				}
 			}
+			
 			#h {
 				background: #fff;
 				border: solid 1px #ddd;
@@ -290,6 +321,7 @@
 				word-break: break-all;
 				word-wrap: break-word;
 			}
+			
 			.cancel {
 				background-color: darkred;
 			}
@@ -304,27 +336,27 @@
 		<pre id='h'></pre>
 		<script id='msg-template' type="text/template">
 			<% for(var i in record){ var item=record[i]; %>
-				<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
-					<% if(item.sender=='self' ) { %>
-						<i class="msg-user mui-icon mui-icon-person"></i>
-					<% } else { %>
-						<img class="msg-user-img" src="./images/logo.png" alt="" />
-					<% } %>
-					<div class="msg-content">
-						<div class="msg-content-inner">
-							<% if(item.type=='text' ) { %>
-								<%=( item.content|| '&nbsp;&nbsp;') %>
-							<% } else if(item.type=='image' ) { %>
-								<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
-							<% } else if(item.type=='sound' ) { %>
-								<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
-								<span class="play-state">点击播放</span>
-							<% } %>
-						</div>
-						<div class="msg-content-arrow"></div>
+			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>' msg-send='<%=(item.sender)%>'>
+				<% if(item.sender=='self' ) { %>
+				<i class="msg-user mui-icon mui-icon-person"></i>
+				<% } else { %>
+				<img class="msg-user-img" src="./images/logo.png" alt="" />
+				<% } %>
+				<div class="msg-content">
+					<div class="msg-content-inner">
+						<% if(item.type=='text' ) { %>
+						<%=( item.content|| '&nbsp;&nbsp;') %>
+						<% } else if(item.type=='image' ) { %>
+						<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
+						<% } else if(item.type=='sound' ) { %>
+						<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+						<span class="play-state">点击播放</span>
+						<% } %>
 					</div>
-					<div class="mui-item-clear"></div>
+					<div class="msg-content-arrow"></div>
 				</div>
+				<div class="mui-item-clear"></div>
+			</div>
 			<% } %>
 		</script>
 		<div class="mui-content">
@@ -351,6 +383,7 @@
 		<script src="../../js/mui.min.js"></script>
 		<script src="../../js/mui.imageViewer.js"></script>
 		<script src="../../js/arttmpl.js"></script>
+		<script src="../../js/chat/socket.io.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" charset="utf-8">
 			(function($, doc) {
 				var MIN_SOUND_TIME = 800;
@@ -366,12 +399,12 @@
 					}
 				});
 				template.config('escape', false);
-				
-				if(mui.os.ios){
+
+				if(mui.os.ios) {
 					// 解决在ios上fixed元素focusin时位置出现错误的问题 
-					document.addEventListener('DOMContentLoaded',function(){
+					document.addEventListener('DOMContentLoaded', function() {
 						var footerDom = document.querySelector('footer');
-						
+
 						document.addEventListener('focusin', function() {
 							footerDom.style.position = 'absolute';
 						});
@@ -382,11 +415,19 @@
 				}
 
 				$.plusReady(function() {
+
+					//获取上一个页面传过来的参数
+					var self = plus.webview.currentWebview();
+					var friendAccount = self.friendAccount; //获得参数
+					var friendId = self.friendId; //获得参数
+
+					//					console.log(friendAccount);
+
 					plus.webview.currentWebview().setStyle({
 						softinputMode: "adjustResize"
 					});
 					var showKeyboard = function() {
-						if ($.os.ios) {
+						if($.os.ios) {
 							var webView = plus.webview.currentWebview().nativeInstanceObject();
 							webView.plusCallMethod({
 								"setKeyboardDisplayRequiresUserAction": false
@@ -402,11 +443,13 @@
 							//alert("ll");
 						}
 					};
-					var record = [{
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！'
-					}];
+					var record = [
+						//					{
+						//						sender: 'zs',
+						//						type: 'text',
+						//						content: 'Hi，我是 MUI 小管家！'
+						//					}
+					];
 					var ui = {
 						body: doc.querySelector('body'),
 						footer: doc.querySelector('footer'),
@@ -427,13 +470,18 @@
 					var msgItemTap = function(msgItem, event) {
 						var msgType = msgItem.getAttribute('msg-type');
 						var msgContent = msgItem.getAttribute('msg-content')
-						if (msgType == 'sound') {
+						console.log(msgContent);
+						if(msgType == 'sound') {
 							player = plus.audio.createPlayer(msgContent);
 							var playState = msgItem.querySelector('.play-state');
 							playState.innerText = '正在播放...';
-							player.play(function() {
+							player.play(function(e) {
+								console.log('播放')
+								console.log(JSON.stringify(e))
 								playState.innerText = '点击播放';
 							}, function(e) {
+								console.log('播放err')
+								console.log(JSON.stringify(e))
 								playState.innerText = '点击播放';
 							});
 						}
@@ -453,6 +501,27 @@
 						});
 						var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
 						[].forEach.call(msgItems, function(item, index) {
+//							var msgType = item.getAttribute('msg-type');
+//							var msgContent = item.getAttribute('msg-content');
+//							var msgSend = item.getAttribute('msg-send');
+////							
+//							if(msgType == 'sound'&&msgSend=='zs') {
+//								//创建语音下载
+//								var dtask = plus.downloader.createDownload(msgContent, {}, function(d, status) {
+//									// 下载完成
+//									console.log(msgContent)
+//									console.log(msgContent)
+//									
+//									if(status == 200) {
+//										console.log("Download success: " + d.filename);
+//										item.getAttribute('msg-content',d.filename)
+//									} else {
+//										console.log("Download failed: " + status);
+//									}
+//								});
+//								//dtask.addEventListener( "statechanged", onStateChanged, false );
+//								dtask.start();
+//							}
 							item.addEventListener('tap', function(event) {
 								msgItemTap(item, event);
 							}, false);
@@ -467,42 +536,129 @@
 					var send = function(msg) {
 						record.push(msg);
 						bindMsgList();
-						toRobot(msg.content);
+						//						toRobot(msg.content);
+						socketSend(msg)
 					};
 					//调用机器人API
-					var toRobot = function(info) {
-						var apiUrl = 'http://www.tuling123.com/openapi/api';
-						$.getJSON(apiUrl, {
-							"key": 'acfbca724ea1b5db96d2eef88ce677dc',
-							"info": info,
-							"userid": plus.device.uuid
-						}, function(data) {
-							//alert(JSON.stringify(data));
-							record.push({
-								sender: 'zs',
-								type: 'text',
-								content: data.text
-							});
-							bindMsgList();
+					//					var toRobot = function(info) {
+					//						var apiUrl = 'http://www.tuling123.com/openapi/api';
+					//						$.getJSON(apiUrl, {
+					//							"key": 'acfbca724ea1b5db96d2eef88ce677dc',
+					//							"info": info,
+					//							"userid": plus.device.uuid
+					//						}, function(data) {
+					//							//alert(JSON.stringify(data));
+					//							record.push({
+					//								sender: 'zs',
+					//								type: 'text',
+					//								content: data.text
+					//							});
+					//							bindMsgList();
+					//						});
+					//					};
+
+					//接收好友发送过来的消息
+					window.addEventListener('onSocket', function(event) {
+						console.log(11111)
+						var content = event.detail.msg.content;
+						var type = event.detail.msg.type;
+						if(type != 'text') {
+							content = localStorage.getItem('ip') + content.replace('public', '')
+						}
+						console.log(JSON.stringify(event.detail.msg))
+						record.push({
+							sender: 'zs',
+							type: type,
+							content: content
 						});
-					};
+						bindMsgList();
+					})
+
+					//调用socket发送消息  msg.type:sound;text;image
+					//获取main页面
+					var main = plus.webview.getWebviewById("main.html");
+
+					function socketSend(msg) {
+						var sendMsg = {
+							userAccount:JSON.parse(localStorage.getItem('userInfo')).account,
+							friendAccount: friendAccount,
+							friendId:friendId,
+							time: new Date().getTime(),
+							msg: JSON.stringify(msg)
+						}
+
+						if(msg.type == 'text') {
+							mui.ajax(localStorage.getItem('ip') + '/addTalkingText', {
+								data: sendMsg,
+								dataType: 'json', //服务器返回json格式数据
+								type: 'post', //HTTP请求类型
+								timeout: 10000, //超时时间设置为10秒；
+								success: function(data) {
+									if(data.status == 0) {
+										mui.fire(main, 'emit', {
+											path: '/getMsg',
+											data: data.msg
+										})
+										//										socket.emit('/getMsg', data.msg);
+										mui.toast('发送成功!')
+									} else {
+										mui.toast('发送失败！')
+									}
+
+								},
+								error: function(xhr, type, errorThrown) {
+
+								}
+							});
+						} else {
+							//上聊天语音和图片
+							var talkingImageAndSoundUp = plus.uploader.createUpload(localStorage.getItem('ip') + '/upTalkingImageAndSound', {
+								method: 'POST'
+							}, function(upload, status) {
+
+								console.log("upload cb:" + upload.responseText);
+								if(status == 200) {
+									var data = JSON.parse(upload.responseText);
+									//上传成功，重置表单
+									if(data.status === 0) {
+										mui.toast('发送成功!')
+										mui.fire(main, 'emit', {
+											path: '/getMsg',
+											data: data.msg
+										})
+									}
+								} else {
+									console.log("upload fail");
+								}
+
+							});
+
+							talkingImageAndSoundUp.addFile(msg.content, {
+								key: 'noChat'
+							});
+							talkingImageAndSoundUp.addData('talkingData', JSON.stringify(sendMsg));
+							//开始上传任务
+							talkingImageAndSoundUp.start();
+						}
+
+					}
 
 					function msgTextFocus() {
+						ui.boxMsgText.focus();
+						setTimeout(function() {
 							ui.boxMsgText.focus();
-							setTimeout(function() {
-								ui.boxMsgText.focus();
-							}, 150);
-						}
-						//解决长按“发送”按钮，导致键盘关闭的问题；
+						}, 150);
+					}
+					//解决长按“发送”按钮，导致键盘关闭的问题；
 					ui.footerRight.addEventListener('touchstart', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							msgTextFocus();
 							event.preventDefault();
 						}
 					});
 					//解决长按“发送”按钮，导致键盘关闭的问题；
 					ui.footerRight.addEventListener('touchmove', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							msgTextFocus();
 							event.preventDefault();
 						}
@@ -520,7 +676,7 @@
 					//						}
 					//					});
 					ui.footerRight.addEventListener('release', function(event) {
-						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
+						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
 							//showKeyboard();
 							ui.boxMsgText.focus();
 							setTimeout(function() {
@@ -530,18 +686,19 @@
 							send({
 								sender: 'self',
 								type: 'text',
+								time: new Date().getTime(),
 								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
 							});
 							ui.boxMsgText.value = '';
 							$.trigger(ui.boxMsgText, 'input', null);
-						} else if (ui.btnMsgType.classList.contains('mui-icon-mic')) {
+						} else if(ui.btnMsgType.classList.contains('mui-icon-mic')) {
 							ui.btnMsgType.classList.add('mui-icon-compose');
 							ui.btnMsgType.classList.remove('mui-icon-mic');
 							ui.boxMsgText.style.display = 'none';
 							ui.boxMsgSound.style.display = 'block';
 							ui.boxMsgText.blur();
 							document.body.focus();
-						} else if (ui.btnMsgType.classList.contains('mui-icon-compose')) {
+						} else if(ui.btnMsgType.classList.contains('mui-icon-compose')) {
 							ui.btnMsgType.classList.add('mui-icon-mic');
 							ui.btnMsgType.classList.remove('mui-icon-compose');
 							ui.boxMsgSound.style.display = 'none';
@@ -566,7 +723,7 @@
 							buttons: btnArray
 						}, function(e) {
 							var index = e.index;
-							switch (index) {
+							switch(index) {
 								case 0:
 									break;
 								case 1:
@@ -575,6 +732,7 @@
 										send({
 											sender: 'self',
 											type: 'image',
+											time: new Date().getTime(),
 											content: "file://" + plus.io.convertLocalFileSystemURL(path)
 										});
 									}, function(err) {});
@@ -584,23 +742,24 @@
 										send({
 											sender: 'self',
 											type: 'image',
+											time: new Date().getTime(),
 											content: path
 										});
 									}, function(err) {}, null);
 									break;
 							}
 						});
-					}, false); 
-					var setSoundAlertVisable=function(show){
-						if(show){
+					}, false);
+					var setSoundAlertVisable = function(show) {
+						if(show) {
 							ui.boxSoundAlert.style.display = 'block';
 							ui.boxSoundAlert.style.opacity = 1;
-						}else{
+						} else {
 							ui.boxSoundAlert.style.opacity = 0;
 							//fadeOut 完成再真正隐藏
-							setTimeout(function(){
+							setTimeout(function() {
 								ui.boxSoundAlert.style.display = 'none';
-							},200);
+							}, 200);
 						}
 					};
 					var recordCancel = false;
@@ -609,19 +768,17 @@
 					var startTimestamp = null;
 					var stopTimestamp = null;
 					var stopTimer = null;
-					
-					
+
 					//按住录音按钮  录音
-					
-					
+
 					ui.boxMsgSound.addEventListener('hold', function(event) {
 						recordCancel = false;
-						if(stopTimer)clearTimeout(stopTimer);
+						if(stopTimer) clearTimeout(stopTimer);
 						audio_tips.innerHTML = "手指上划，取消发送";
 						ui.boxSoundAlert.classList.remove('rprogress-sigh');
 						setSoundAlertVisable(true);
 						recorder = plus.audio.getRecorder();
-						if (recorder == null) {
+						if(recorder == null) {
 							plus.nativeUI.toast("不能获取录音对象");
 							return;
 						}
@@ -629,10 +786,11 @@
 						recorder.record({
 							filename: "_doc/audio/"
 						}, function(path) {
-							if (recordCancel) return;
+							if(recordCancel) return;
 							send({
 								sender: 'self',
 								type: 'sound',
+								time: new Date().getTime(),
 								content: path
 							});
 						}, function(e) {
@@ -641,18 +799,18 @@
 					}, false);
 					ui.body.addEventListener('drag', function(event) {
 						//console.log('drag');
-						if (Math.abs(event.detail.deltaY) > 50) {
-							if (!recordCancel) {
+						if(Math.abs(event.detail.deltaY) > 50) {
+							if(!recordCancel) {
 								recordCancel = true;
-								if (!audio_tips.classList.contains("cancel")) {
+								if(!audio_tips.classList.contains("cancel")) {
 									audio_tips.classList.add("cancel");
 								}
 								audio_tips.innerHTML = "松开手指，取消发送";
 							}
 						} else {
-							if (recordCancel) {
+							if(recordCancel) {
 								recordCancel = false;
-								if (audio_tips.classList.contains("cancel")) {
+								if(audio_tips.classList.contains("cancel")) {
 									audio_tips.classList.remove("cancel");
 								}
 								audio_tips.innerHTML = "手指上划，取消发送";
@@ -661,20 +819,20 @@
 					}, false);
 					ui.boxMsgSound.addEventListener('release', function(event) {
 						//console.log('release');
-						if (audio_tips.classList.contains("cancel")) {
+						if(audio_tips.classList.contains("cancel")) {
 							audio_tips.classList.remove("cancel");
 							audio_tips.innerHTML = "手指上划，取消发送";
 						}
 						//
 						stopTimestamp = (new Date()).getTime();
-						if (stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
+						if(stopTimestamp - startTimestamp < MIN_SOUND_TIME) {
 							audio_tips.innerHTML = "录音时间太短";
 							ui.boxSoundAlert.classList.add('rprogress-sigh');
 							recordCancel = true;
-							stopTimer=setTimeout(function(){
+							stopTimer = setTimeout(function() {
 								setSoundAlertVisable(false);
-							},800);
-						}else{
+							}, 800);
+						} else {
 							setSoundAlertVisable(false);
 						}
 						recorder.stop();
@@ -697,18 +855,18 @@
 							ui.boxMsgText.focus();
 						}, 0);
 						focus = true;
-						setTimeout(function () {
+						setTimeout(function() {
 							focus = false;
-						},1000);
+						}, 1000);
 						event.detail.gesture.preventDefault();
 					}, false);
 					//点击消息列表，关闭键盘
-					ui.areaMsgList.addEventListener('click',function (event) {
-						if(!focus){
+					ui.areaMsgList.addEventListener('click', function(event) {
+						if(!focus) {
 							ui.boxMsgText.blur();
 						}
 					})
-					
+
 				});
 			}(mui, document));
 		</script>
