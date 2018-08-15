@@ -12,7 +12,7 @@
 			mui.init();
 			mui.plusReady(function() {
 				var noChatId = localStorage.getItem('noChatId');
-				var ip = localStorage.setItem('ip', 'http://192.168.1.7:3333');
+				var ip = localStorage.setItem('ip', 'http://192.168.1.6:3333');
 				if(noChatId) {
 					mui.ajax(localStorage.getItem("ip") + '/getUser', {
 						data: {

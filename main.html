@@ -7,7 +7,27 @@
 		<title></title>
 		<link href="css/mui.css" rel="stylesheet" />
 
-		<style>
+		<style type="text/css"> 
+			@font-face {
+				font-family: "iconfont";
+				src: url('./fonts/iconfont.eot');
+				/* IE9*/
+				src: url('./fonts/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+				url('./fonts/iconfont.woff') format('woff'), /* chrome, firefox */
+				url('./fonts/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+				url('./fonts/iconfont.svg#iconfont') format('svg');
+				/* iOS 4.1- */
+			}
+			
+			.iconfont {
+				font-family: "iconfont" !important;
+				font-size: 16px;
+				font-style: normal;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke-width: 0.2px;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			
 			ul {
 				font-size: 14px;
 				color: #8f8f94;
@@ -23,19 +43,19 @@
 
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item mui-active" href="./pages/talking.html">
-				<span class="mui-icon">&#xe658;</span>
+				<span class="mui-icon iconfont">&#xe658;</span>
 				<span class="mui-tab-label">聊天</span>
 			</a>
 			<a class="mui-tab-item" href="./pages/friends.html">
-				<span class="mui-icon">&#xe625;</span>
+				<span class="mui-icon iconfont">&#xe625;</span>
 				<span class="mui-tab-label">好友</span>
 			</a>
 			<a class="mui-tab-item" href="./pages/faxian.html">
-				<span class="mui-icon">&#xe627;</span>
+				<span class="mui-icon iconfont">&#xe627;</span>
 				<span class="mui-tab-label">发现</span>
 			</a>
 			<a class="mui-tab-item" href="./pages/me.html">
-				<span class="mui-icon">&#xe635;</span>
+				<span class="mui-icon iconfont">&#xe635;</span>
 				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>
@@ -85,7 +105,7 @@
 				}, false);
 				$.plusReady(function() {
 					//--
-					
+
 					//获取chat页面
 
 					socket.on('/getMsg', function(data) {
@@ -95,7 +115,7 @@
 							msg: data.msg
 						})
 					});
-					
+
 					$.oldBack = mui.back;
 					var backButtonPress = 0;
 					$.back = function(event) {

@@ -198,6 +198,20 @@
 					"pages/talking/chat.html"
 				],
 				"priority": 0
+			},
+			"pages/faxian.html": {
+				"resources": [],
+				"refer": [
+					"pages/faxian/friendsNews.html"
+				],
+				"priority": 0
+			},
+			"pages/faxian/friendsNews.html": {
+				"resources": [],
+				"refer": [
+					"pages/faxian/addNews.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {

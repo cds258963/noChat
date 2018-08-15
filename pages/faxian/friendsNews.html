@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../css/mui.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			
+			.mui-content img {
+				width: 100%;
+			}
+			
+			.hm-description {
+				margin: 15px;
+			}
+			
+			.hm-description>li {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px;
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+			
+			footer {
+				display: none;
+				position: fixed;
+				width: 100%;
+				height: 50px;
+				min-height: 50px;
+				border-top: solid 1px #bbb;
+				left: 0px;
+				bottom: 0px;
+				overflow: hidden;
+				padding: 0px 50px 0px 10px;
+				background-color: #fafafa;
+			}
+			
+			.footer-right {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				right: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 12px 5px;
+				display: inline-block;
+			}
+			
+			.footer-center {
+				height: 100%;
+				padding: 5px 0px;
+			}
+			
+			.footer-center [class*=input] {
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+			
+			.footer-center .input-text {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				line-height: 18px !important;
+				font-family: verdana !important;
+				overflow: hidden;
+			}
+			
+			footer .mui-icon {
+				color: #000;
+			}
+			
+			footer .mui-icon:active {
+				color: #007AFF !important;
+			}
+			
+			footer .mui-icon-paperplane {
+				/*-webkit-transform: rotateZ(45deg);
+				transform: rotateZ(45deg);*/
+				font-size: 16px;
+				word-break: keep-all;
+				line-height: 100%;
+				padding-top: 6px;
+				color: rgba(0, 135, 250, 1);
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="addNews">朋友圈</h1>
+			<a class=" mui-pull-right mui-icon mui-icon-camera" id="showMyNews"></a>
+		</header>
+		<div class="mui-content" id="newsContent">
+			<!--静态图片-->
+			<img id="img1" src="../../images/cbd.jpg" />
+
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="../../images/qq.png" />
+					<div class="mui-media-body">
+						小M
+						<p class='mui-ellipsis friendsText'> this is a city , which like a hot boll,the tempreture is vare heigh！</p>
+					</div>
+					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
+					<h2>小M</h2>
+					<p>发表于 2016-06-30 15:30</p>-->
+				</div>
+				<div class="mui-card-content">
+					<img src="../../images/muwu.jpg" alt="" width="100%" data-id="1" />
+					<div class="mui-table-view">
+						<div class="mui-table-view-cell mui-media">
+							<div class="mui-media-body">
+								啦啦啦：
+								<p>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+							<div class="mui-media-body">
+								啦啦啦：
+								<p>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<p>15:30</p>
+					<a class="mui-card-link mui-icon mui-icon-compose charge" data-id="2" for="msg-text"></a>
+				</div>
+			
+			</div>
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="../../images/qq.png" />
+					<div class="mui-media-body">
+						小M
+						<p class='mui-ellipsis friendsText'>基数大首都呼叫不能加手机还是等会撒U盾哈撒打算今年，家就是低价四等奖爱神的箭阿萨德静安寺</p>
+					</div>
+					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
+					<h2>小M</h2>
+					<p>发表于 2016-06-30 15:30</p>-->
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view mui-grid-view">
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://placehold.it/400x300" data-id="2">
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media mui-col-xs-6">
+							<a href="#">
+								<img class="mui-media-object" src="http://placehold.it/400x300" data-id="2">
+							</a>
+						</li>
+					</ul>
+					<div class="mui-table-view">
+						<div class="mui-table-view-cell mui-media">
+							<div class="mui-media-body">
+								啦啦啦：
+								<p>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+							<div class="mui-media-body">
+								啦啦啦：
+								<p>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mui-card-footer">
+					<p>15:30</p>
+					<a class="mui-card-link mui-icon mui-icon-compose charge" data-id="2" for="msg-text"></a>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text' name="msg-text"></textarea>
+			</div>
+			<label for="" class="footer-right" style="display: flex;align-items: center;" data-type='cancel' id="sendBtn">
+				取消
+			</label>
+		</footer>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+
+			mui.plusReady(function() {
+				var loopFlag = false; //默认不支持轮播
+				//图片预览
+				mui('.mui-card-content').on('tap', 'img', function() {
+					var imgId = this.getAttribute('data-id');
+					var images = [].slice.call(document.querySelectorAll('.mui-card-content img[data-id="' + imgId + '"]'));
+					var urls = [];
+					images.forEach(function(item) {
+						urls.push(item.src);
+					});
+					var index = images.indexOf(this);
+					plus.nativeUI.previewImage(urls, {
+						current: index,
+						loop: loopFlag,
+						indicator: 'number'
+					});
+				});
+				//点击查看更多
+				mui('.mui-media-body').on('tap', '.friendsText', function() {
+					console.log('11111')
+					this.setAttribute('class', 'friendsText');
+				})
+				//添加朋友圈
+				mui('#header').on('tap', '#showMyNews', function() {
+
+					var cmr = plus.camera.getCamera();
+					var res = cmr.supportedImageResolutions[0];
+					var fmt = cmr.supportedImageFormats[0];
+					console.log("Resolution: " + res + ", Format: " + fmt);
+					cmr.captureImage(function(path) {
+							alert("Capture image success: " + path);
+							var name = path.substr(path.lastIndexOf('/') + 1);
+							plus.zip.compressImage({
+								src: path,
+								dst: '_doc/' + name,
+								overwrite: true,
+								quality: 50
+							}, function(zip) {
+								mui.openWindow({
+									url: 'addNews.html',
+									id: 'addNews.html',
+									extras: {
+										path: zip.target
+									}
+								})
+							})
+						},
+						function(error) {
+							alert("Capture image failed: " + error.message);
+						}, {
+							resolution: res,
+							format: fmt
+						}
+					);
+				})
+				var newsContent = document.getElementById('newsContent');
+				var sendBtn = document.getElementById('sendBtn');
+				var footer = document.getElementById('footer');
+
+				//点击评论
+				mui(".mui-card-footer").on('tap', '.charge', function() {
+					var id = this.getAttribute('data-id');
+					footer.style.display = 'block';
+					footer.setAttribute('data-id', id);
+					newsContent.style.paddingBottom = '60px';
+
+				})
+
+				//点击发送评论
+				mui("#footer").on('tap', '.footer-right', function() {
+
+					footer.style.display = 'none';
+					newsContent.style.paddingBottom = '0';
+					sendBtn.setAttribute('data-type', 'cancel');
+					sendBtn.innerText = '取消';
+				})
+				mui("#footer").on('input', '#msg-text', function() {
+					sendBtn.setAttribute('data-type', 'send');
+					sendBtn.innerText = '发送';
+				})
+			})
+		</script>
+
+	</body>
+
+</html>
